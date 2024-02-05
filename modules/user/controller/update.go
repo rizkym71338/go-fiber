@@ -3,24 +3,23 @@ package controller
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/rizkym71338/go-fiber/handlers"
-	"github.com/rizkym71338/go-fiber/libs"
 	"github.com/rizkym71338/go-fiber/modules/user/repository"
 )
 
-func Update(c *fiber.Ctx) error {
-	err, rowsAffected, invalid := repository.Update(c)
+func Update(ctx *fiber.Ctx) error {
+	err, rowsAffected, invalid := repository.Update(ctx)
 
 	if invalid {
-		return handlers.BadRequest(c)
+		return handlers.BadRequest(ctx)
 	}
 
-	if libs.IsNoRowsAffected(rowsAffected) {
-		return handlers.NotFound(c)
+	if rowsAffected == 0 {
+		return handlers.NotFound(ctx)
 	}
 
-	if libs.IsError(err) {
-		return handlers.InternalServerError(c)
+	if err != nil {
+		return handlers.InternalServerError(ctx)
 	}
 
-	return handlers.Success(c)
+	return handlers.Success(ctx)
 }

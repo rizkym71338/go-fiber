@@ -7,16 +7,16 @@ import (
 	"github.com/rizkym71338/go-fiber/handlers"
 )
 
-func Pagination(c *fiber.Ctx) (int, int) {
-	page, err := strconv.Atoi(c.Query("page", "1"))
+func Pagination(ctx *fiber.Ctx) (int, int) {
+	page, err := strconv.Atoi(ctx.Query("page", "1"))
 	if err != nil || page < 1 {
-		handlers.BadRequest(c, "Invalid page number")
+		handlers.BadRequest(ctx)
 		return 0, 0
 	}
 
-	perPage, err := strconv.Atoi(c.Query("perPage", "10"))
+	perPage, err := strconv.Atoi(ctx.Query("perPage", "10"))
 	if err != nil || perPage < 1 {
-		handlers.BadRequest(c, "Invalid perPage value")
+		handlers.BadRequest(ctx)
 		return 0, 0
 	}
 

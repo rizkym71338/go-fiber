@@ -5,6 +5,6 @@ import (
 	user "github.com/rizkym71338/go-fiber/modules/user/route"
 )
 
-func Routes(r fiber.Router) {
-	user.Route(r)
+func Routes(router fiber.Router) {
+	user.Route(router)
 }

@@ -11,7 +11,7 @@ type User struct {
 	Email string `gorm:"type:varchar(300)" json:"email"`
 }
 
-func (u *User) BeforeCreate(tx *gorm.DB) (err error) {
-	u.Id = cuid.New()
+func (user *User) BeforeCreate(tx *gorm.DB) (err error) {
+	user.Id = cuid.New()
 	return nil
 }

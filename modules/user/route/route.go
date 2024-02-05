@@ -5,8 +5,8 @@ import (
 	"github.com/rizkym71338/go-fiber/modules/user/controller"
 )
 
-func Route(r fiber.Router) {
-	route := r.Group("/users")
+func Route(router fiber.Router) {
+	route := router.Group("/users")
 
 	route.Get("/", controller.FindMany)
 	route.Get("/:id", controller.FindFirst)
